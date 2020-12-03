@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -22,8 +21,6 @@ module.exports = (env, argv) => {
 			open: true,
 			hot: true
 		},
-
-		// devtool: "source-map",
 
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js', '.jsx']
