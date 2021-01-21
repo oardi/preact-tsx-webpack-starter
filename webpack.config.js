@@ -23,7 +23,13 @@ module.exports = (env, argv) => {
 		},
 
 		resolve: {
-			extensions: ['.ts', '.tsx', '.js', '.jsx']
+			extensions: ['.ts', '.tsx', '.js', '.jsx'],
+			alias: {
+				"react": "preact/compat",
+				"react-dom": "preact/compat",
+				preact: path.resolve(__dirname, 'node_modules', 'preact'),
+				"preact/hooks": path.resolve(__dirname, 'node_modules', 'preact', 'hooks')
+			}
 		},
 
 		module: {
@@ -47,9 +53,7 @@ module.exports = (env, argv) => {
 						{
 							loader: 'file-loader',
 							options: {
-								name: '[name].[ext]',
-								outputPath: 'assets/img',
-								publicPath: 'assets/img'
+								name: '[name].[ext]'
 							}
 						}
 					]
@@ -68,9 +72,9 @@ module.exports = (env, argv) => {
 				favicon: 'favicon.ico'
 			}),
 			new MiniCssExtractPlugin({
-				filename: "style.css",
-				chunkFilename: "style.css"
-			})
+				filename: '[name].[contenthash].css',
+				chunkFilename: '[id].[contenthash].css',
+			}),
 		],
 
 		optimization: {
